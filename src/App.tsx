@@ -9,6 +9,11 @@ const App: FC = () => {
       }}
     >
       <Text>asdfas</Text>
+      <Text>asdfas</Text>
+      <Text>asdfas</Text>
+      <Text>asdfas</Text>
+      <Text>asdfas</Text>
+      <Text>asdfas</Text>
     </SafeAreaView>
   );
 };
