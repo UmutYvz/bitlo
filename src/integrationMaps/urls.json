@@ -1,0 +1,6 @@
+{
+  "BASE_URL": "https://api4.bitlo.com/market/",
+  "ALL_COINS": "ticker/all",
+  "COIN": "/orderbook?market=",
+  "DEPTH": "&depth=50 "
+}

@@ -33,7 +33,6 @@ const Header: FC<IHeaderProps> = ({ navProps }: IHeaderProps) => {
 
   const [headerParams, setHeaderParams] = useState<headerParams>();
 
-  console.log(headerParams);
   useEffect(() => {
     setHeaderParams(params);
   }, [params]);
@@ -44,7 +43,6 @@ const Header: FC<IHeaderProps> = ({ navProps }: IHeaderProps) => {
     }
   };
 
-  console.log(headerParams, images);
   return (
     <SafeAreaView style={[styles.header, { ...commonStyles.shadow }]}>
       <TouchableOpacity style={styles.leftContainer} onPress={onPressLeftButon}>

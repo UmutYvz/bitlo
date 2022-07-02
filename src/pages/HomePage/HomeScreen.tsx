@@ -1,9 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import HomeView from './HomeView';
+import { CoinStateType } from '../../redux/coins/reducer';
+import { useSelector } from 'react-redux';
+import { StateType } from '../../redux/appStore';
 
 const HomeScreen = () => {
-  return <HomeView />;
+  const { coins } = useSelector((state: StateType) => state?.coins);
+
+  return <HomeView coins={coins} />;
 };
 
 export default HomeScreen;

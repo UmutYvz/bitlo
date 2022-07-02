@@ -3,15 +3,16 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   SIGN_UP,
-  CLEAR_AUTH,
   SIGNUP_FAILED,
   LOGIN_FAILED
 } from '../constants';
 import LoadingView from '../../../components/Loading/LoadingView';
+import { getCoins } from '../../../api';
+import { getCoinsAction } from '../../coins/action';
 
-const loginSuccess = (data: any) => ({
+const loginSuccess = (payload: any) => ({
   type: LOGIN_SUCCESS,
-  data
+  payload
 });
 const loginFailed = () => ({
   type: LOGIN_FAILED
@@ -51,6 +52,7 @@ export const loginAction = async (
     LoadingView.ref.close();
     return { error: true };
   }
+  await getCoinsAction(dispatch);
   await dispatch(loginSuccess(res));
   LoadingView.ref.close();
 };

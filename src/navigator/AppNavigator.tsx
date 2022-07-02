@@ -52,7 +52,7 @@ const AuthStack: FC = () => {
       <Stack.Screen
         name='HomePage'
         component={HomeScreen}
-        initialParams={{ title: 'Anasayfa', isLoggedIn: true }}
+        initialParams={{ title: 'Bütün Coinler', isLoggedIn: true }}
       />
     </Stack.Navigator>
   );
