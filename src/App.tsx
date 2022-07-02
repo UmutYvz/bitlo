@@ -1,23 +1,22 @@
-import React, { FC } from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import React, { FC, useRef } from 'react';
 
+import { NavigationContainer } from '@react-navigation/native';
+
+import Main from './pages/Main';
+import { Provider } from 'react-redux';
+import configureStore from './redux/appStore';
+import LoadingView from './components/Loading/LoadingView';
+
+const store = configureStore();
 const App: FC = () => {
   return (
-    <SafeAreaView
-      style={{
-        flex: 1
-      }}
-    >
-      <Text>asdfas</Text>
-      <Text>asdfas</Text>
-      <Text>asdfas</Text>
-      <Text>asdfas</Text>
-      <Text>asdfas</Text>
-      <Text>asdfas</Text>
-    </SafeAreaView>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Main />
+        <LoadingView ref={(ref: LoadingView) => (LoadingView.ref = ref)} />
+      </NavigationContainer>
+    </Provider>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;

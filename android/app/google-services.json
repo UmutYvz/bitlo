@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "162697210959",
+    "project_id": "rn-auth-umut",
+    "storage_bucket": "rn-auth-umut.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162697210959:android:b0ac0de494e0b487f04e3a",
+        "android_client_info": {
+          "package_name": "com.bitlo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162697210959-p85g2qo1hof7l6n5ubfbaftsts1ni5tp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFWk1XXOiy3oBsRPU3W0yaWIClLOMLhC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162697210959-p85g2qo1hof7l6n5ubfbaftsts1ni5tp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

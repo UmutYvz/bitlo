@@ -1,0 +1,10 @@
+{
+  "INPUT": {
+    "backgroundColor": "#fff",
+    "borderColor": "#ddd",
+    "color": "#000",
+    "fontPriority": "primary",
+    "fontWeight": "normal",
+    "placeHolderColor": "#ddd"
+  }
+}
