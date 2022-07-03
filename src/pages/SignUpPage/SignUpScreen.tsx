@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { StateType } from '../../redux/appStore';
-import { signUpAction } from '../../redux/login/action';
-import { AuthStateType } from '../../redux/login/reducer';
+import { signUpAction } from '../../redux/auth/action';
+import { AuthStateType } from '../../redux/auth/reducer';
+
 import { FormType } from '../LoginPage/LoginScreen';
+
 import SignUpView from './SignUpView';
 
 const SignUpScreen = () => {

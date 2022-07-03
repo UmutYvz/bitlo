@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet, ActivityIndicator, View } from 'react-native';
+
 import colors from '../../utils/colors';
 
 export interface ILoadingProps {
@@ -23,7 +24,7 @@ class LoadingView extends PureComponent<ILoadingProps, { visible: boolean }> {
     if (visible) {
       return (
         <View style={styles.container}>
-          <ActivityIndicator size={'large'} color={colors.white} />
+          <ActivityIndicator size='large' color={colors.white} />
         </View>
       );
     }

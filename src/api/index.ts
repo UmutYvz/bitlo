@@ -1,7 +1,11 @@
 import { create } from 'apisauce';
+
 import integrationMaps from '../integrationMaps';
+
+import { BaseResponse, CoinResponse } from './ApiTyping';
+
 const {
-  urls: { BASE_URL, ALL_COINS }
+  urls: { BASE_URL, ALL_COINS, COIN, DEPTH }
 } = integrationMaps;
 
 const api = create({
@@ -10,7 +14,10 @@ const api = create({
   headers: {}
 });
 
-export const getCoins = async (): Promise<any> => {
-  console.log('2');
-  return await api.get(`/${ALL_COINS}`);
+export const getCoins = async (): Promise<BaseResponse> => {
+  return await api.get(`${ALL_COINS}`);
+};
+
+export const fetchCoin = async (query: string): Promise<CoinResponse> => {
+  return await api.get(`${COIN}${query}${DEPTH}`);
 };

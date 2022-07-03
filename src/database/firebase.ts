@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -58,12 +59,9 @@ export const logout = async () => {
   try {
     await signOut(auth);
     return true;
-  } catch {
+  } catch (error) {
+    console.log(error);
     return { error: { statusCode: 403 } };
   }
 };
 export { auth };
-
-export type ErrorType = {
-  statusCoda: number;
-};

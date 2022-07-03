@@ -1,13 +1,17 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { FC } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+
 import CTextInput, { CTextInputType } from '../../components/CTextInput';
+
 import { FormType } from '../LoginPage/LoginScreen';
 
-import staticTexts from '../../staticTexts';
+import staticTexts, { StaticTextType } from '../../staticTexts';
+
 import colors from '../../utils/colors';
+
 import { alphabetic, removeNotNumbers } from '../../methods/string';
 
-const { signUp: $S } = staticTexts;
+const { signUp: $S }: StaticTextType = staticTexts;
 interface ISignUpViewProps {
   form: FormType;
   onChangeLoginInfo: (type: string, value: string) => void;

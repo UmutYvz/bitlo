@@ -11,6 +11,9 @@ import Header from '../components/Header/Header';
 import LoginScreen from '../pages/LoginPage/LoginScreen';
 import SignUpScreen from '../pages/SignUpPage/SignUpScreen';
 import HomeScreen from '../pages/HomePage/HomeScreen';
+import CoinDetailScreen from '../pages/CoinDetailPage/CoinDetailScreen';
+import ProfileScreen from '../pages/ProfilePage/ProfileScreen';
+import AccountScreen from '../pages/AccountPage/AccountScreen';
 
 const RootStack = createStackNavigator();
 const Stack = createStackNavigator();
@@ -54,6 +57,41 @@ const AuthStack: FC = () => {
         component={HomeScreen}
         initialParams={{ title: 'Bütün Coinler', isLoggedIn: true }}
       />
+      <Stack.Screen
+        name='CoinDetail'
+        component={CoinDetailScreen}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter
+        }}
+      />
+      <Stack.Screen
+        name='Profile'
+        component={ProfileStack}
+        options={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const ProfileStack: FC<any> = (props: StackHeaderProps) => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        cardStyle: { backgroundColor: '#fff' },
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        header: (props: StackHeaderProps) => <Header navProps={props} />
+      }}
+    >
+      <Stack.Screen
+        name='Profile'
+        component={ProfileScreen}
+        options={{ headerShown: true }}
+        initialParams={props.route.params}
+      />
+      <Stack.Screen name='Account' component={AccountScreen} />
     </Stack.Navigator>
   );
 };

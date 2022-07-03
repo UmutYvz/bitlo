@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, RefObject, memo } from 'react';
+import React, { FC, useState, memo } from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,10 @@ import {
   ViewStyle,
   TextStyle,
   TouchableOpacity,
-  Platform,
-  findNodeHandle
+  Platform
 } from 'react-native';
-import SecureTextEntry from '../../assets/icons/SecureTextEntry';
 
-const padding = 16;
+import SecureTextEntry from '../../assets/icons/SecureTextEntry';
 
 export enum CTextInputType {
   default,
@@ -21,7 +19,7 @@ export enum CTextInputType {
   phone
 }
 
-export interface IFTTextInputProps {
+export interface ICTextInputProps {
   label?: string;
   type?: CTextInputType;
   onChangeText: (text: string) => void;
@@ -31,7 +29,7 @@ export interface IFTTextInputProps {
   placeholder?: string;
 }
 
-const CTextInput: FC<IFTTextInputProps> = ({
+const CTextInput: FC<ICTextInputProps> = ({
   label,
   type = CTextInputType.default,
   onChangeText,
@@ -41,6 +39,7 @@ const CTextInput: FC<IFTTextInputProps> = ({
   placeholder = ''
 }) => {
   const [isHide, setIsHide] = useState(type === CTextInputType.password);
+  const onPressHide = () => setIsHide(!isHide);
 
   return (
     <View style={styles.container}>
@@ -80,13 +79,12 @@ const CTextInput: FC<IFTTextInputProps> = ({
               : 'default'
           }
           style={styles.textInput}
-          selectionColor={Platform.OS === 'android' ? 'red' : 'blue'}
           secureTextEntry={isHide}
         />
 
         {type === CTextInputType.password && (
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={onPressHide}
             hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}
           >
             <SecureTextEntry size={16} fill='black' />

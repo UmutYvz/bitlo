@@ -1,17 +1,20 @@
+import React, { FC, useCallback, useState } from 'react';
+
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useCallback, useState } from 'react';
-import { AppParams } from '../../navigator/NavigatorTypes';
-import LoginView from './LoginView';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { useDispatch } from 'react-redux';
-import staticTexts from '../../staticTexts';
-import { loginAction } from '../../redux/login/action';
-import { AuthStateType } from '../../redux/login/reducer';
-import { useSelector } from 'react-redux';
+import { loginAction } from '../../redux/auth/action';
+import { AuthStateType } from '../../redux/auth/reducer';
 import { StateType } from '../../redux/appStore';
 
-const { login: $L } = staticTexts;
+import staticTexts, { StaticTextType } from '../../staticTexts';
+
+import { AppParams } from '../../navigator/NavigatorTypes';
+
+import LoginView from './LoginView';
+
+const { login: $L }: StaticTextType = staticTexts;
 interface ILoginScreenProps {}
 
 export type FormType = {

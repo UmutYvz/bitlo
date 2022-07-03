@@ -1,4 +1,5 @@
 import * as $ from '../constants';
+
 const initialState: AuthStateType = {
   pending: false,
   loginSuccess: false,
@@ -24,10 +25,12 @@ export const authReducer = (
       return { ...state, user: action.payload, loginSuccess: true };
     case $.LOGIN_FAILED:
       return { ...state, loginSuccess: false };
-    case $.LOGOUT:
+    case $.LOGOUT_SUCCESS:
       return { ...state, logoutSuccess: true };
     case $.SIGN_UP:
       return { ...state, signUpSuccess: true };
+    case $.CLEAR_AUTH:
+      return { ...initialState };
     default:
       return state;
   }

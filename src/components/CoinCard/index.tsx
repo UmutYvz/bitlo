@@ -1,26 +1,35 @@
 import React, { FC, memo } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+
 import ArrowDown from '../../assets/icons/ArrowDown';
 import ArrowUp from '../../assets/icons/ArrowUp';
-import staticTexts from '../../staticTexts';
+
+import staticTexts, { StaticTextType } from '../../staticTexts';
+
 import colors from '../../utils/colors';
 import { commonStyles } from '../../utils/CommonStyles';
 
-const { card: $C } = staticTexts;
-
+const { card: $C }: StaticTextType = staticTexts;
 interface ICoinCardProps {
   coin: CoinType;
   color: string;
+  disabled: boolean;
+  onPress: () => void;
 }
 
-const CoinCard: FC<ICoinCardProps> = ({ coin, color }) => {
+const CoinCard: FC<ICoinCardProps> = ({ coin, color, disabled, onPress }) => {
   const checkValue = (changeAmout: number) => {
     if (changeAmout < 0) return true;
     return false;
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      disabled={disabled}
+      style={styles.container}
+      onPress={onPress}
+      activeOpacity={0.4}
+    >
       <View style={styles.leftSide}>
         <Text style={{ color }}>{coin.marketCode}</Text>
       </View>
@@ -35,7 +44,9 @@ const CoinCard: FC<ICoinCardProps> = ({ coin, color }) => {
               style={[
                 styles.textAlignRight,
                 {
-                  color: checkValue(parseInt(coin.change24h)) ? 'red' : 'green'
+                  color: checkValue(parseInt(coin.change24h))
+                    ? colors.decrease
+                    : colors.growth
                 }
               ]}
             >
@@ -43,13 +54,13 @@ const CoinCard: FC<ICoinCardProps> = ({ coin, color }) => {
             </Text>
           </Text>
           {checkValue(parseInt(coin.change24h)) ? (
-            <ArrowDown size={24} fill='red' />
+            <ArrowDown size={24} fill={colors.decrease} />
           ) : (
-            <ArrowUp size={24} fill='green' />
+            <ArrowUp size={24} fill={colors.growth} />
           )}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

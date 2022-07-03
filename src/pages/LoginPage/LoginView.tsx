@@ -1,19 +1,15 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
 import React, { FC } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import staticTexts from '../../staticTexts';
+import staticTexts, { StaticTextType } from '../../staticTexts';
 
-import { FormType } from './LoginScreen';
 import CTextInput, { CTextInputType } from '../../components/CTextInput';
+
 import colors from '../../utils/colors';
 
-const { login: $L } = staticTexts;
+import { FormType } from './LoginScreen';
+
+const { login: $L }: StaticTextType = staticTexts;
 
 interface ILoginViewProps {
   form: FormType;

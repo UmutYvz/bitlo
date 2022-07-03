@@ -8,13 +8,17 @@ import {
   Text
 } from 'react-native';
 
+import { StackHeaderProps, StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+
 import { commonStyles } from '../../utils/CommonStyles';
-
 import colors from '../../utils/colors';
-
-import { StackHeaderProps } from '@react-navigation/stack';
-import ArrowLeft from '../../assets/icons/ArrowLeft';
 import { images } from '../../utils/images';
+import { menuItems } from '../../utils/menuConstants';
+
+import ArrowLeft from '../../assets/icons/ArrowLeft';
+
+import { AuthParams } from '../../navigator/NavigatorTypes';
 
 interface IHeaderProps {
   navProps: StackHeaderProps;
@@ -30,6 +34,8 @@ const Header: FC<IHeaderProps> = ({ navProps }: IHeaderProps) => {
     route: { params },
     navigation
   } = navProps;
+
+  const navigation2: StackNavigationProp<AuthParams> = useNavigation();
 
   const [headerParams, setHeaderParams] = useState<headerParams>();
 
@@ -53,11 +59,20 @@ const Header: FC<IHeaderProps> = ({ navProps }: IHeaderProps) => {
           <Text style={styles.title}>{headerParams.title}</Text>
         </View>
       )}
-      <View style={styles.rightContainer}>
+      <TouchableOpacity
+        style={styles.rightContainer}
+        onPress={() => {
+          navigation2.navigate('Profile', {
+            title: 'Profil',
+            goBack: true,
+            items: menuItems
+          });
+        }}
+      >
         {headerParams?.isLoggedIn && (
           <Image source={images.profile} style={styles.image} />
         )}
-      </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

@@ -1,9 +1,11 @@
 import React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import colors from '../../utils/colors';
+
 const ArrowDown = ({
   size,
-  fill,
+  fill = colors.black,
   ...props
 }: {
   size: number;

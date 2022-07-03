@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -8,15 +8,13 @@ import configureStore from './redux/appStore';
 import LoadingView from './components/Loading/LoadingView';
 
 const store = configureStore();
-const App: FC = () => {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Main />
-        <LoadingView ref={(ref: LoadingView) => (LoadingView.ref = ref)} />
-      </NavigationContainer>
-    </Provider>
-  );
-};
+const App: FC = () => (
+  <Provider store={store}>
+    <NavigationContainer>
+      <Main />
+      <LoadingView ref={(ref: LoadingView) => (LoadingView.ref = ref)} />
+    </NavigationContainer>
+  </Provider>
+);
 
 export default App;

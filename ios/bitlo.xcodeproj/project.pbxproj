@@ -12,6 +12,10 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1DA785AF2870491E005472AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DA785AE2870491E005472AB /* GoogleService-Info.plist */; };
+		1DF901102871930000E14020 /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DF9010C2871930000E14020 /* SpaceMono-Regular.ttf */; };
+		1DF901112871930000E14020 /* SpaceMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DF9010D2871930000E14020 /* SpaceMono-Italic.ttf */; };
+		1DF901122871930000E14020 /* SpaceMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DF9010E2871930000E14020 /* SpaceMono-Bold.ttf */; };
+		1DF901132871930000E14020 /* SpaceMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DF9010F2871930000E14020 /* SpaceMono-BoldItalic.ttf */; };
 		2EA8F74450FD7899746D8190 /* Pods_bitlo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAB38F9D994E196ECF62B12E /* Pods_bitlo.framework */; };
 		799B7F64AC0BA5705EEC3BC2 /* Pods_bitlo_bitloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCF74CD4C67CE70F92D270B /* Pods_bitlo_bitloTests.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -39,6 +43,10 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = bitlo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = bitlo/main.m; sourceTree = "<group>"; };
 		1DA785AE2870491E005472AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1DF9010C2871930000E14020 /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
+		1DF9010D2871930000E14020 /* SpaceMono-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Italic.ttf"; sourceTree = "<group>"; };
+		1DF9010E2871930000E14020 /* SpaceMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Bold.ttf"; sourceTree = "<group>"; };
+		1DF9010F2871930000E14020 /* SpaceMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		651B4B98B728ACA0B3FB8C81 /* Pods-bitlo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bitlo.debug.xcconfig"; path = "Target Support Files/Pods-bitlo/Pods-bitlo.debug.xcconfig"; sourceTree = "<group>"; };
 		757697C2989CD76347420AE7 /* Pods-bitlo-bitloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bitlo-bitloTests.release.xcconfig"; path = "Target Support Files/Pods-bitlo-bitloTests/Pods-bitlo-bitloTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = bitlo/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,6 +96,7 @@
 		13B07FAE1A68108700A75B9A /* bitlo */ = {
 			isa = PBXGroup;
 			children = (
+				1DF9010B287192F000E14020 /* Resources */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -96,6 +105,18 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = bitlo;
+			sourceTree = "<group>";
+		};
+		1DF9010B287192F000E14020 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1DF9010E2871930000E14020 /* SpaceMono-Bold.ttf */,
+				1DF9010F2871930000E14020 /* SpaceMono-BoldItalic.ttf */,
+				1DF9010D2871930000E14020 /* SpaceMono-Italic.ttf */,
+				1DF9010C2871930000E14020 /* SpaceMono-Regular.ttf */,
+			);
+			name = Resources;
+			path = bitlo/Resources;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -245,7 +266,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				1DF901122871930000E14020 /* SpaceMono-Bold.ttf in Resources */,
+				1DF901102871930000E14020 /* SpaceMono-Regular.ttf in Resources */,
+				1DF901132871930000E14020 /* SpaceMono-BoldItalic.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				1DF901112871930000E14020 /* SpaceMono-Italic.ttf in Resources */,
 				1DA785AF2870491E005472AB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

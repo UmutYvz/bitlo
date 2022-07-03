@@ -4,8 +4,9 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import Navigator from '../../navigator/AppNavigator';
+
 import { StateType } from '../../redux/appStore';
-import { AuthStateType } from '../../redux/login/reducer';
+import { AuthStateType } from '../../redux/auth/reducer';
 
 const Main: FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,6 +15,9 @@ const Main: FC = () => {
   useEffect(() => {
     if (state.signUpSuccess || state.loginSuccess) {
       setIsLoggedIn(true);
+    }
+    if (state.logoutSuccess) {
+      setIsLoggedIn(false);
     }
   }, [state]);
 

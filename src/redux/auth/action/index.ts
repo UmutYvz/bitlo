@@ -1,13 +1,17 @@
-import { login, register } from '../../../database/firebase';
+import { login, logout, register } from '../../../database/firebase';
+
 import {
   LOGIN_SUCCESS,
-  LOGOUT,
+  LOGIN_FAILED,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILED,
   SIGN_UP,
   SIGNUP_FAILED,
-  LOGIN_FAILED
+  CLEAR_AUTH
 } from '../constants';
+
 import LoadingView from '../../../components/Loading/LoadingView';
-import { getCoins } from '../../../api';
+
 import { getCoinsAction } from '../../coins/action';
 
 const loginSuccess = (payload: any) => ({
@@ -25,6 +29,19 @@ const signUpFailed = () => ({
   type: SIGNUP_FAILED
 });
 
+const logoutFailed = () => ({
+  type: LOGOUT_FAILED
+});
+
+const logoutSuccess = () => ({
+  type: LOGOUT_SUCCESS
+});
+
+const clearAuth = () => ({
+  type: CLEAR_AUTH
+});
+
+console.log('LOGOUT_SUCCESS', LOGOUT_SUCCESS);
 export const signUpAction = async (
   form: { email: string; password: string },
   dispatch: any
@@ -54,5 +71,18 @@ export const loginAction = async (
   }
   await getCoinsAction(dispatch);
   await dispatch(loginSuccess(res));
+  LoadingView.ref.close();
+};
+
+export const logoutAction = async (dispatch: any) => {
+  LoadingView.ref.show();
+  const res: any = await logout();
+  if (!res) {
+    await dispatch(logoutFailed());
+    LoadingView.ref.close();
+    return { error: true };
+  }
+  await dispatch(logoutSuccess());
+  await dispatch(clearAuth());
   LoadingView.ref.close();
 };
