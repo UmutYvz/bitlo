@@ -8,6 +8,7 @@ import staticTexts, { StaticTextType } from '../../staticTexts';
 
 import colors from '../../utils/colors';
 import { commonStyles } from '../../utils/CommonStyles';
+import { fonts } from '../../utils/fonts';
 
 const { card: $C }: StaticTextType = staticTexts;
 interface ICoinCardProps {
@@ -31,7 +32,9 @@ const CoinCard: FC<ICoinCardProps> = ({ coin, color, disabled, onPress }) => {
       activeOpacity={0.4}
     >
       <View style={styles.leftSide}>
-        <Text style={{ color }}>{coin.marketCode}</Text>
+        <Text style={[styles.marketCodeText, { color }]}>
+          {coin.marketCode}
+        </Text>
       </View>
       <View style={styles.rightSide}>
         <Text style={[styles.currentQuote, styles.textAlignRight]}>
@@ -88,6 +91,10 @@ const styles = StyleSheet.create({
   },
   textAlignRight: {
     textAlign: 'right'
+  },
+  marketCodeText: {
+    fontSize: 18,
+    fontFamily: fonts.monoBoldItalic
   }
 });
 

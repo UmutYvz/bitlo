@@ -5,7 +5,8 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  updateProfile
 } from 'firebase/auth';
 
 export const firebaseConfig = {
@@ -60,8 +61,20 @@ export const logout = async () => {
     await signOut(auth);
     return true;
   } catch (error) {
-    console.log(error);
-    return { error: { statusCode: 403 } };
+    return error;
   }
 };
+
+export const updateUserProfile = async (data: { displayName?: string }) => {
+  try {
+    if (auth?.currentUser) {
+      await updateProfile(auth?.currentUser, data);
+      return true;
+    }
+    return false;
+  } catch (error) {
+    return false;
+  }
+};
+
 export { auth };

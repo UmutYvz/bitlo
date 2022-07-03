@@ -15,22 +15,16 @@ import { AppParams } from '../../navigator/NavigatorTypes';
 import LoginView from './LoginView';
 
 const { login: $L }: StaticTextType = staticTexts;
+
 interface ILoginScreenProps {}
 
-export type FormType = {
-  name?: string;
-  phone?: string;
-  email: string;
-  password: string;
-  returnSecureToken?: boolean;
-};
 const LoginScreen: FC<ILoginScreenProps> = () => {
   const dispatch = useDispatch();
   const state: AuthStateType = useSelector((state: StateType) => state?.auth);
 
   const navigation: StackNavigationProp<AppParams> = useNavigation();
 
-  const [form, setForm] = useState<FormType>({
+  const [form, setForm] = useState<LoginFormType>({
     email: '',
     password: ''
   });
@@ -47,16 +41,26 @@ const LoginScreen: FC<ILoginScreenProps> = () => {
     },
     [form, setForm]
   );
+  const validation = (form: LoginFormType) => {
+    const { email, password } = form;
+    if (!email.length || !password.length) return false;
+    return true;
+  };
 
   const onPressLogin = async () => {
-    const res: any = await loginAction(
-      { email: form.email, password: form.password },
-      dispatch
-    );
-    if (res?.error) {
-      setError(true);
+    setError(false);
+    const isValid = validation(form);
+    if (isValid) {
+      const res: any = await loginAction(
+        { email: form.email, password: form.password },
+        dispatch
+      );
+      if (res?.error) {
+        setError(true);
+      }
       return;
     }
+    setError(true);
   };
 
   const onPressSignUp = () => {
@@ -75,3 +79,8 @@ const LoginScreen: FC<ILoginScreenProps> = () => {
 };
 
 export default LoginScreen;
+
+export type LoginFormType = {
+  email: string;
+  password: string;
+};

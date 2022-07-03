@@ -5,19 +5,17 @@ import { StateType } from '../../redux/appStore';
 import { signUpAction } from '../../redux/auth/action';
 import { AuthStateType } from '../../redux/auth/reducer';
 
-import { FormType } from '../LoginPage/LoginScreen';
-
 import SignUpView from './SignUpView';
 
 const SignUpScreen = () => {
   const dispatch = useDispatch();
   const state: AuthStateType = useSelector((state: StateType) => state?.auth);
 
-  const [form, setForm] = useState<FormType>({
+  const [form, setForm] = useState<SignUpFormType>({
     email: '',
     password: '',
-    name: '',
-    phone: '',
+    firstName: '',
+    lastName: '',
     returnSecureToken: true
   });
 
@@ -35,15 +33,29 @@ const SignUpScreen = () => {
     [form, setForm]
   );
 
+  const validation = (form: SignUpFormType) => {
+    const { firstName, lastName, password, email } = form;
+    if (
+      !firstName.length ||
+      !lastName.length ||
+      !password.length ||
+      !email.length
+    )
+      return false;
+    return true;
+  };
+
   const onPressSignUp = async () => {
-    const res = await signUpAction(
-      { email: form.email, password: form.password },
-      dispatch
-    );
-    if (res?.error) {
-      setError(true);
+    setError(false);
+    const isValid = validation(form);
+    if (isValid) {
+      const res = await signUpAction(form, dispatch);
+      if (res?.error) {
+        setError(true);
+      }
       return;
     }
+    setError(true);
   };
   return (
     <SignUpView
@@ -56,3 +68,11 @@ const SignUpScreen = () => {
 };
 
 export default SignUpScreen;
+
+export type SignUpFormType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  returnSecureToken?: boolean;
+};

@@ -2,5 +2,6 @@
   "LOGIN": "GİRİŞ YAP",
   "SIGN_UP": "ÜYE OL",
   "EMAIL_PLACEHOLDER": "E-posta",
-  "PASSWORD_PLACEHOLDER": "Parola"
+  "PASSWORD_PLACEHOLDER": "Parola",
+  "ERROR": "Bir hata oluştu."
 }

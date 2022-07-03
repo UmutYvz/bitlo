@@ -7,12 +7,12 @@ import CTextInput, { CTextInputType } from '../../components/CTextInput';
 
 import colors from '../../utils/colors';
 
-import { FormType } from './LoginScreen';
+import { LoginFormType } from './LoginScreen';
 
 const { login: $L }: StaticTextType = staticTexts;
 
 interface ILoginViewProps {
-  form: FormType;
+  form: LoginFormType;
   onChangeLoginInfo: (type: string, value: string) => void;
   onPressSignUp: () => void;
   onPressLogin: () => void;
@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
   },
   errorContainer: {
     alignSelf: 'center',
-    color: 'red',
-    fontSize: 18,
+    color: colors.decrease,
+    fontSize: 13,
     marginBottom: 12
   }
 });

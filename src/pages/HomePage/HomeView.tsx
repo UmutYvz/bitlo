@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
+import { Text } from 'react-native-svg';
 
 import CoinCard, { CoinType } from '../../components/CoinCard';
 

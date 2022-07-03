@@ -1,8 +1,8 @@
 {
   "SIGN_UP": "ÜYE OL",
-  "NAME_PLACEHOLDER": "İsim",
-  "PHONE_PLACEHOLDER": "Telefon",
+  "FIRST_NAME_PLACEHOLDER": "İsim",
+  "LAST_NAME_PLACEHOLDER": "Soyisim",
   "EMAIL_PLACEHOLDER": "E-posta",
   "PASSWORD_PLACEHOLDER": "Parola",
-  "PREFIX": "+90"
+  "ERROR": "Bir hata oluştu."
 }

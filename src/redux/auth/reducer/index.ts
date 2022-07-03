@@ -7,7 +7,10 @@ const initialState: AuthStateType = {
   logoutSuccess: false,
   signUpSuccess: false,
   signUpFailed: false,
-  user: false
+  user: false,
+  profileCreated: false,
+  profileUpdateFailed: false,
+  profileUpdateSuccess: true
 };
 
 export const authReducer = (
@@ -29,6 +32,14 @@ export const authReducer = (
       return { ...state, logoutSuccess: true };
     case $.SIGN_UP:
       return { ...state, signUpSuccess: true };
+    case $.PROFILE_CREATE_SUCCESS:
+      return { ...state, profileCreated: true };
+    case $.PROFILE_CREATE_FAILED:
+      return { ...state, profileCreated: false };
+    case $.UPDATE_PROFILE_SUCCESS:
+      return { ...state, profileUpdateSuccess: true };
+    case $.UPDATE_PROFILE_FAILED:
+      return { ...state, profileUpdateFailed: false };
     case $.CLEAR_AUTH:
       return { ...initialState };
     default:
@@ -44,4 +55,7 @@ export type AuthStateType = {
   signUpSuccess: boolean;
   signUpFailed: boolean;
   user: any;
+  profileCreated: boolean;
+  profileUpdateFailed: boolean;
+  profileUpdateSuccess: boolean;
 };

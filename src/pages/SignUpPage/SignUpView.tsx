@@ -3,17 +3,18 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import CTextInput, { CTextInputType } from '../../components/CTextInput';
 
-import { FormType } from '../LoginPage/LoginScreen';
-
 import staticTexts, { StaticTextType } from '../../staticTexts';
 
 import colors from '../../utils/colors';
 
 import { alphabetic, removeNotNumbers } from '../../methods/string';
 
+import { SignUpFormType } from './SignUpScreen';
+import { fonts } from '../../utils/fonts';
+
 const { signUp: $S }: StaticTextType = staticTexts;
 interface ISignUpViewProps {
-  form: FormType;
+  form: SignUpFormType;
   onChangeLoginInfo: (type: string, value: string) => void;
   onPressSignUp: () => void;
   error: boolean;
@@ -30,26 +31,28 @@ const SignUpView: FC<ISignUpViewProps> = ({
         <View style={styles.loginForm}>
           <CTextInput
             onChangeText={(value: string) =>
-              onChangeLoginInfo('name', alphabetic(value))
+              onChangeLoginInfo('firstName', alphabetic(value))
             }
-            value={form?.name || ''}
+            value={form?.firstName || ''}
             type={CTextInputType.default}
-            placeholder={$S.NAME_PLACEHOLDER}
+            placeholder={$S.FIRST_NAME_PLACEHOLDER}
+            label={$S.FIRST_NAME_PLACEHOLDER}
           />
           <CTextInput
             onChangeText={(value: string) =>
-              onChangeLoginInfo('phone', removeNotNumbers(value))
+              onChangeLoginInfo('lastName', alphabetic(value))
             }
-            value={form?.phone || ''}
-            type={CTextInputType.phone}
-            placeholder={$S.PHONE_PLACEHOLDER}
-            prefix={$S.PREFIX}
+            value={form?.lastName || ''}
+            type={CTextInputType.default}
+            placeholder={$S.LAST_NAME_PLACEHOLDER}
+            label={$S.LAST_NAME_PLACEHOLDER}
           />
           <CTextInput
             onChangeText={(value: string) => onChangeLoginInfo('email', value)}
             value={form?.email || ''}
             type={CTextInputType.email}
             placeholder={$S.EMAIL_PLACEHOLDER}
+            label={$S.EMAIL_PLACEHOLDER}
           />
           <CTextInput
             onChangeText={(value: string) =>
@@ -58,9 +61,10 @@ const SignUpView: FC<ISignUpViewProps> = ({
             value={form?.password || ''}
             type={CTextInputType.password}
             placeholder={$S.PASSWORD_PLACEHOLDER}
+            label={$S.PASSWORD_PLACEHOLDER}
           />
 
-          {error && <Text style={styles.errorContainer}>Bir Hata Oluştu</Text>}
+          {error && <Text style={styles.errorContainer}>{$S.ERROR}</Text>}
           <TouchableOpacity style={styles.signUpButton} onPress={onPressSignUp}>
             <Text style={styles.signUpButtonText}>{$S.SIGN_UP}</Text>
           </TouchableOpacity>
@@ -124,8 +128,8 @@ const styles = StyleSheet.create({
   },
   errorContainer: {
     alignSelf: 'center',
-    color: 'red',
-    fontSize: 18,
+    color: colors.decrease,
+    fontSize: 13,
     marginBottom: 12
   }
 });
