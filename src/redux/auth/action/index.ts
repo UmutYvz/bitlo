@@ -19,11 +19,12 @@ import {
   UPDATE_PROFILE_SUCCESS
 } from '../constants';
 
-import LoadingView from '../../../components/Loading/LoadingView';
+import LoadingView from '../../../components/Loading';
 
-import { getCoinsAction } from '../../coins/action';
+import { clearCoinState, getCoinsAction } from '../../coins/action';
 import { ProfileFormType } from '../../../pages/AccountPage/AccountScreen';
 import { SignUpFormType } from '../../../pages/SignUpPage/SignUpScreen';
+import { Action, Dispatch } from 'redux';
 
 const loginSuccess = (payload: any) => ({
   type: LOGIN_SUCCESS,
@@ -68,29 +69,32 @@ const clearAuth = () => ({
   type: CLEAR_AUTH
 });
 
-export const signUpAction = async (form: SignUpFormType, dispatch: any) => {
+export const signUpAction = async (
+  form: SignUpFormType,
+  dispatch: Dispatch<Action>
+) => {
   LoadingView.ref.show();
   const { email, password, firstName, lastName } = form;
   const displayName = `${firstName} ${lastName}`;
 
   const res: any = await register({ email, password });
   if (!!res?.code) {
-    await dispatch(signUpFailed());
+    dispatch(signUpFailed());
     LoadingView.ref.close();
     return { error: true };
   }
 
-  const profileCreated = await updateUserProfile({ displayName });
+  const profileCreated = updateUserProfile({ displayName });
 
   if (!profileCreated) {
-    await dispatch(createProfileFailWhileSigning());
+    dispatch(createProfileFailWhileSigning());
     LoadingView.ref.close();
     return { error: true };
   }
-  await dispatch(profileCreateSuccess());
-  await getCoinsAction(dispatch);
-  await dispatch(signUpSuccess());
-  await dispatch(loginSuccess(res));
+  dispatch(profileCreateSuccess());
+  getCoinsAction(dispatch);
+  dispatch(signUpSuccess());
+  dispatch(loginSuccess(res));
 
   LoadingView.ref.close();
   return res;
@@ -98,36 +102,37 @@ export const signUpAction = async (form: SignUpFormType, dispatch: any) => {
 
 export const loginAction = async (
   form: { email: string; password: string },
-  dispatch: any
+  dispatch: Dispatch<Action>
 ) => {
   LoadingView.ref.show();
   const res: any = await login(form);
   if (!!res?.code) {
-    await dispatch(loginFailed());
+    dispatch(loginFailed());
     LoadingView.ref.close();
     return { error: true };
   }
   await getCoinsAction(dispatch);
-  await dispatch(loginSuccess(res));
+  dispatch(loginSuccess(res));
   LoadingView.ref.close();
 };
 
-export const logoutAction = async (dispatch: any) => {
+export const logoutAction = async (dispatch: Dispatch<Action>) => {
   LoadingView.ref.show();
   const res: any = await logout();
   if (!res) {
-    await dispatch(logoutFailed());
+    dispatch(logoutFailed());
     LoadingView.ref.close();
     return { error: true };
   }
-  await dispatch(logoutSuccess());
-  await dispatch(clearAuth());
+  dispatch(logoutSuccess());
+  dispatch(clearAuth());
+  dispatch(clearCoinState());
   LoadingView.ref.close();
 };
 
 export const updateProfileAction = async (
   form: ProfileFormType,
-  dispatch: any
+  dispatch: Dispatch<Action>
 ) => {
   LoadingView.ref.show();
   const { firstName, lastName } = form;
@@ -136,10 +141,10 @@ export const updateProfileAction = async (
   const profileCreated = await updateUserProfile({ displayName });
 
   if (!profileCreated) {
-    await dispatch(updateProfileFailed());
+    dispatch(updateProfileFailed());
     LoadingView.ref.close();
     return { error: true };
   }
-  await dispatch(updateProfileSuccess());
+  dispatch(updateProfileSuccess());
   LoadingView.ref.close();
 };

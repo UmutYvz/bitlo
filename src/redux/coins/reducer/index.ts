@@ -18,9 +18,6 @@ export const coinReducer = (
     case $.COINS_FULLFILLED:
       return { ...state, coins: action.payload };
     case $.COIN_DETAIL_FULLFILLED:
-      console.log(action);
-      console.log(action);
-      console.log(action);
       return {
         ...state,
         activeCoinDetail: {
@@ -29,6 +26,8 @@ export const coinReducer = (
           totals: action.payload.totals
         }
       };
+    case $.CLEAR_COIN_STATE:
+      return { ...initialState };
     default:
       return state;
   }

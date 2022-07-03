@@ -10,7 +10,7 @@ const initialState: AuthStateType = {
   user: false,
   profileCreated: false,
   profileUpdateFailed: false,
-  profileUpdateSuccess: true
+  profileUpdateSuccess: false
 };
 
 export const authReducer = (

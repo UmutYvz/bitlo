@@ -31,11 +31,10 @@ interface headerParams {
 
 const Header: FC<IHeaderProps> = ({ navProps }: IHeaderProps) => {
   const {
-    route: { params },
-    navigation
+    route: { params }
   } = navProps;
 
-  const navigation2: StackNavigationProp<AuthParams> = useNavigation();
+  const navigation: StackNavigationProp<AuthParams> = useNavigation();
 
   const [headerParams, setHeaderParams] = useState<headerParams>();
 
@@ -49,6 +48,13 @@ const Header: FC<IHeaderProps> = ({ navProps }: IHeaderProps) => {
     }
   };
 
+  const onPressProfile = () =>
+    navigation.navigate('ProfileStack', {
+      title: 'Profil',
+      goBack: true,
+      items: menuItems
+    });
+
   return (
     <SafeAreaView style={[styles.header, { ...commonStyles.shadow }]}>
       <TouchableOpacity style={styles.leftContainer} onPress={onPressLeftButon}>
@@ -59,16 +65,7 @@ const Header: FC<IHeaderProps> = ({ navProps }: IHeaderProps) => {
           <Text style={styles.title}>{headerParams.title}</Text>
         </View>
       )}
-      <TouchableOpacity
-        style={styles.rightContainer}
-        onPress={() => {
-          navigation2.navigate('Profile', {
-            title: 'Profil',
-            goBack: true,
-            items: menuItems
-          });
-        }}
-      >
+      <TouchableOpacity style={styles.rightContainer} onPress={onPressProfile}>
         {headerParams?.isLoggedIn && (
           <Image source={images.profile} style={styles.image} />
         )}

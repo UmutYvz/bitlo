@@ -15,7 +15,7 @@ export type AuthParams = {
     goBack?: boolean;
     query: string;
   };
-  Profile: {
+  ProfileStack: {
     title?: string;
     goBack?: boolean;
     items: MenuItemType;

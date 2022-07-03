@@ -12,7 +12,7 @@ import { AuthParams } from '../../navigator/NavigatorTypes';
 import ProfileView from './ProfileView';
 
 interface IProfileScreenProps {
-  route: RouteProp<AuthParams, 'Profile'>;
+  route: RouteProp<AuthParams, 'ProfileStack'>;
 }
 
 const ProfileScreen: FC<IProfileScreenProps> = ({ route }) => {

@@ -12,8 +12,9 @@ interface IProfileViewProps {
 const ProfileView: FC<IProfileViewProps> = ({ menuItems, onPress }) => {
   return (
     <View style={styles.container}>
-      {menuItems.map(item => (
+      {menuItems.map((item, index) => (
         <TouchableOpacity
+          key={`menu_item_${index}`}
           style={styles.menuItemContainer}
           onPress={() => onPress(item.toNavigate, item?.params)}
         >

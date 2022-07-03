@@ -42,13 +42,13 @@ const LoginScreen: FC<ILoginScreenProps> = () => {
     [form, setForm]
   );
   const validation = (form: LoginFormType) => {
+    setError(false);
     const { email, password } = form;
     if (!email.length || !password.length) return false;
     return true;
   };
 
   const onPressLogin = async () => {
-    setError(false);
     const isValid = validation(form);
     if (isValid) {
       const res: any = await loginAction(

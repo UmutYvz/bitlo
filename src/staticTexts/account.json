@@ -3,5 +3,6 @@
   "FIRST_NAME": "İsim",
   "LAST_NAME": "Soyisim",
   "PHONE_PLACEHOLDER": "Telefon",
-  "ERROR": "Bir hata oluştu."
+  "ERROR": "Bir hata oluştu.",
+  "EMAIL": "Email"
 }

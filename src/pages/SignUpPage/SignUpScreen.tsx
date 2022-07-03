@@ -34,6 +34,7 @@ const SignUpScreen = () => {
   );
 
   const validation = (form: SignUpFormType) => {
+    setError(false);
     const { firstName, lastName, password, email } = form;
     if (
       !firstName.length ||
@@ -46,7 +47,6 @@ const SignUpScreen = () => {
   };
 
   const onPressSignUp = async () => {
-    setError(false);
     const isValid = validation(form);
     if (isValid) {
       const res = await signUpAction(form, dispatch);
@@ -57,6 +57,7 @@ const SignUpScreen = () => {
     }
     setError(true);
   };
+
   return (
     <SignUpView
       onPressSignUp={onPressSignUp}

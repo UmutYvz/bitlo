@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+
+import configureStore from './redux/appStore';
+
+import LoadingView from './components/Loading';
 
 import Main from './pages/Main';
-import { Provider } from 'react-redux';
-import configureStore from './redux/appStore';
-import LoadingView from './components/Loading/LoadingView';
 
 const store = configureStore();
 const App: FC = () => (

@@ -1,11 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { FC } from 'react';
+
 import CTextInput, { CTextInputType } from '../../components/CTextInput';
+
 import colors from '../../utils/colors';
+
 import staticTexts, { StaticTextType } from '../../staticTexts';
 
 import { ProfileFormType } from './AccountScreen';
-import { alphabetic, removeNotNumbers } from '../../methods/string';
+import { alphabetic } from '../../methods/string';
 
 const { account: $A }: StaticTextType = staticTexts;
 
@@ -43,6 +46,16 @@ const AccountView: FC<IAccountViewProps> = ({
             value={form?.lastName || ''}
             type={CTextInputType.default}
             placeholder={$A.LAST_NAME}
+          />
+          <CTextInput
+            disabled
+            label={$A.EMAIL}
+            onChangeText={(value: string) =>
+              onChangeProfileInfo('email', value)
+            }
+            value={form?.email || ''}
+            type={CTextInputType.default}
+            placeholder={$A.EMAIL}
           />
 
           {error && <Text style={styles.errorContainer}>{$A.ERROR}</Text>}

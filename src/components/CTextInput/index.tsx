@@ -27,6 +27,7 @@ export interface ICTextInputProps {
   textInputStyle?: ViewStyle | TextStyle;
   prefix?: string;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 const CTextInput: FC<ICTextInputProps> = ({
@@ -36,7 +37,8 @@ const CTextInput: FC<ICTextInputProps> = ({
   value = '',
   textInputStyle = {},
   prefix = '',
-  placeholder = ''
+  placeholder = '',
+  disabled
 }) => {
   const [isHide, setIsHide] = useState(type === CTextInputType.password);
   const onPressHide = () => setIsHide(!isHide);
@@ -56,6 +58,8 @@ const CTextInput: FC<ICTextInputProps> = ({
           </View>
         )}
         <TextInput
+          focusable={disabled}
+          caretHidden={disabled}
           placeholder={placeholder}
           autoCapitalize={
             type === CTextInputType.email || type === CTextInputType.password
@@ -63,7 +67,7 @@ const CTextInput: FC<ICTextInputProps> = ({
               : 'sentences'
           }
           value={value}
-          onChangeText={onChangeText}
+          onChangeText={disabled ? () => {} : onChangeText}
           autoCorrect={false}
           maxLength={type === CTextInputType.phone ? 15 : undefined}
           numberOfLines={1}

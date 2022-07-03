@@ -12,7 +12,7 @@ const AccountScreen: FC<IAccountScreenProps> = () => {
   const dispatch = useDispatch();
   const {
     profileUpdateFailed,
-    user: { displayName, phoneNumber }
+    user: { displayName, email }
   }: AuthStateType = useSelector((state: StateType) => state?.auth);
 
   const splittedDisplayName = displayName.split(' ');
@@ -21,7 +21,8 @@ const AccountScreen: FC<IAccountScreenProps> = () => {
 
   const [form, setForm] = useState<ProfileFormType>({
     firstName: splittedDisplayName[0] || '',
-    lastName: splittedDisplayName[1] || ''
+    lastName: splittedDisplayName[1] || '',
+    email: email || ''
   });
 
   const onChangeProfileInfo = useCallback(
@@ -37,18 +38,16 @@ const AccountScreen: FC<IAccountScreenProps> = () => {
   );
 
   const validation = (form: ProfileFormType) => {
+    setError(false);
     const { firstName, lastName } = form;
-    console.log(firstName, !!firstName.length, lastName, !!lastName.length);
     if (!firstName.length || !lastName.length) return false;
     return true;
   };
 
   const onPressUpdate = async () => {
-    setError(false);
     const isValid = validation(form);
     if (isValid) {
       const res: any = await updateProfileAction(form, dispatch);
-      console.log(res);
       if (res?.error) {
         setError(true);
       }
@@ -74,4 +73,5 @@ const styles = StyleSheet.create({});
 export type ProfileFormType = {
   firstName: string;
   lastName: string;
+  email: string;
 };

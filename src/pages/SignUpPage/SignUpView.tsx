@@ -7,10 +7,9 @@ import staticTexts, { StaticTextType } from '../../staticTexts';
 
 import colors from '../../utils/colors';
 
-import { alphabetic, removeNotNumbers } from '../../methods/string';
+import { alphabetic } from '../../methods/string';
 
 import { SignUpFormType } from './SignUpScreen';
-import { fonts } from '../../utils/fonts';
 
 const { signUp: $S }: StaticTextType = staticTexts;
 interface ISignUpViewProps {

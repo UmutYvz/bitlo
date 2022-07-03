@@ -1,28 +1,44 @@
+import { Dispatch } from 'react';
+
+import { Action } from 'redux';
+
 import { fetchCoin, getCoins } from '../../../api';
 
-import LoadingView from '../../../components/Loading/LoadingView';
+import LoadingView from '../../../components/Loading';
 
 import { calculateSums } from '../../../methods/calculateBidAskSums';
 
-import { COINS_FULLFILLED, COIN_DETAIL_FULLFILLED } from '../constants';
+import {
+  CLEAR_COIN_STATE,
+  COINS_FULLFILLED,
+  COIN_DETAIL_FULLFILLED
+} from '../constants';
 
 const coinsFullFilled = (payload: any) => ({
   type: COINS_FULLFILLED,
   payload
 });
+
 const coinDetailFullFilled = (payload: any) => ({
   type: COIN_DETAIL_FULLFILLED,
   payload
 });
 
-export const getCoinsAction = async (dispatch: any) => {
+export const clearCoinState = () => ({
+  type: CLEAR_COIN_STATE
+});
+
+export const getCoinsAction = async (dispatch: Dispatch<Action>) => {
   LoadingView.ref.show();
   const coins = await getCoins();
   await dispatch(coinsFullFilled(coins?.data));
   LoadingView.ref.close();
 };
 
-export const fetchCoinDetail = async (query: string, dispatch: any) => {
+export const fetchCoinDetail = async (
+  query: string,
+  dispatch: Dispatch<Action>
+) => {
   LoadingView.ref.show();
   const coin = await fetchCoin(query);
   const totals = calculateSums(coin?.data);

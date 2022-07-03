@@ -6,7 +6,7 @@ import {
   StackHeaderProps
 } from '@react-navigation/stack';
 
-import Header from '../components/Header/Header';
+import Header from '../components/Header';
 
 import LoginScreen from '../pages/LoginPage/LoginScreen';
 import SignUpScreen from '../pages/SignUpPage/SignUpScreen';
@@ -65,7 +65,7 @@ const AuthStack: FC = () => {
         }}
       />
       <Stack.Screen
-        name='Profile'
+        name='ProfileStack'
         component={ProfileStack}
         options={{
           headerShown: false,
